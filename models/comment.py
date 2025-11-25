@@ -1,7 +1,3 @@
-"""
-Modelo de Comentario
-models/comment.py
-"""
 from database.db_manager import db_manager
 from models.user import User
 import logging
