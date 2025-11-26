@@ -13,7 +13,7 @@ from routes.user_routes import user_bp
 from routes.comment_routes import comment_bp
 from routes.analysis_routes import analysis_bp
 
-from services.sentiment_analizer import sentiment_analyzer
+from services.sentiment_analyzer import sentiment_analyzer
 from services.model_trainer import train_model
 
 logging.basicConfig(

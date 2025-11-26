@@ -1,4 +1,4 @@
-from services.sentiment_analizer import sentiment_analyzer
+from services.sentiment_analyzer import sentiment_analyzer
 import logging
 
 logger = logging.getLogger(__name__)
@@ -84,7 +84,7 @@ def test_sentiment_analysis():
             logger.error("Error analysis in batches")
             return False
     except Exception as e:
-        logger.error(f"   ✗ Error analysis in batches: {e}")
+        logger.error(f"Error analysis in batches: {e}")
         return False
     
     logger.info("\n   Model info:")

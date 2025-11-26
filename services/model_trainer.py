@@ -73,7 +73,8 @@ class ModelTrainer:
             dataset_path = DATASET_CONFIG['path']
         
         try:
-            df = pd.read_csv(dataset_path)
+            df = pd.read_csv(dataset_path, names=["id", "entity", "sentiment", "tweet"])
+            df = df.dropna(subset=['tweet'])
             logger.info(f"Dataset loaded from {dataset_path}")
             return df
         except FileNotFoundError:
@@ -96,10 +97,11 @@ class ModelTrainer:
         df = self.load_dataset(dataset_path)
         
         logger.info(f"Dataset loaded: {len(df)} examples")
+        logger.info(f"Dataset columns: {df.columns}")
         logger.info(f"Class distribution:\n{df['sentiment'].value_counts()}")
         
         logger.info("Preprocessing texts...")
-        df['processed_text'] = df['text'].apply(text_processor.preprocess)
+        df['processed_text'] = df['tweet'].apply(text_processor.preprocess)
         
         logger.info("Vectorizing texts...")
         X = self.analyzer.vectorizer.fit_transform(df['processed_text'])

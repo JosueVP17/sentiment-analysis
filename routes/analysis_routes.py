@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from services.sentiment_analizer import sentiment_analyzer
+from services.sentiment_analyzer import sentiment_analyzer
 from utils.validators import validate_text_length
 import logging
 
