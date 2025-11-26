@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Análisis de Sentimientos con IA</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🧠 Sistema de Análisis de Sentimientos</h1>
+            <p>Análisis mediante Machine Learning usando Máquina de Soporte de Vectores</p>
+        </div>
+        
+        <!-- Quick Test -->
+        <div class="quick-test">
+            <h3>⚡ Prueba Rápida</h3>
+            <div class="quick-test-input">
+                <input type="text" id="quickTestInput" placeholder="Escribe un texto para analizar rápidamente...">
+                <button class="btn" onclick="quickAnalysis()">Analizar</button>
+            </div>
+            <div id="quickResult"></div>
+        </div>
+        
+        <!-- Statistics -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value" id="totalUsers">0</div>
+                <div class="stat-label">👥 Usuarios</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="totalComments">0</div>
+                <div class="stat-label">💬 Comentarios</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="avgConfidence">0%</div>
+                <div class="stat-label">🎯 Confianza Promedio</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="positivePercent">0%</div>
+                <div class="stat-label">😊 Positivos</div>
+            </div>
+        </div>
+        
+        <!-- Main Grid -->
+        <div class="grid">
+            <!-- User Registration -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">👤</span>
+                    <h2>Registrar Usuario</h2>
+                </div>
+                <div id="userAlert"></div>
+                <form id="userForm">
+                    <div class="form-group">
+                        <label>Nombre Completo:</label>
+                        <input type="text" id="userName" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Correo Electrónico:</label>
+                        <input type="email" id="userEmail" placeholder="juan@example.com" required>
+                    </div>
+                    <button type="submit" class="btn">
+                        <span>➕</span>
+                        Registrar Usuario
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Comment Creation -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💬</span>
+                    <h2>Crear Comentario</h2>
+                </div>
+                <div id="commentAlert"></div>
+                <form id="commentForm">
+                    <div class="form-group">
+                        <label>Seleccionar Usuario:</label>
+                        <select id="userId" required>
+                            <option value="">-- Seleccionar Usuario --</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Texto del Comentario:</label>
+                        <textarea id="commentText" placeholder="Escribe tu opinión, reseña o comentario..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">
+                        <span>🔍</span>
+                        Analizar y Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Comments List -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">📝</span>
+                <h2>Comentarios y Análisis</h2>
+            </div>
+            
+            <div class="grid-3" style="margin-bottom: 20px;">
+                <button class="btn" onclick="filterComments('all')">Todos</button>
+                <button class="btn" onclick="filterComments('positive')" style="background: linear-gradient(135deg, #10b981, #059669);">😊 Positivos</button>
+                <button class="btn" onclick="filterComments('negative')" style="background: linear-gradient(135deg, #ef4444, #dc2626);">😞 Negativos</button>
+                <button class="btn" onclick="filterComments('neutral')" style="background: linear-gradient(135deg, #f59e0b, #d97706);">😐 Neutrales</button>
+            </div>
+            
+            <div id="commentsList"></div>
+        </div>
+    </div>
+    
+    <script src="../static/js/script.js"></script>
+</body>
+</html>
