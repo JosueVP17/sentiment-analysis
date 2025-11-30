@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 from utils.text_processor import text_processor
+from utils.print_metrics import print_metrics
 from config import MODEL_CONFIG, DATASET_CONFIG
 import logging
 
@@ -75,6 +76,7 @@ class ModelTrainer:
         try:
             df = pd.read_csv(dataset_path, names=["id", "entity", "sentiment", "tweet"])
             df = df.dropna(subset=['tweet'])
+            df = df[df['sentiment'].str.lower() != 'irrelevant']
             logger.info(f"Dataset loaded from {dataset_path}")
             return df
         except FileNotFoundError:
@@ -149,9 +151,7 @@ class ModelTrainer:
             'confusion_matrix': conf_matrix.tolist()
         }
         
-        logger.info(f"Model trained succesfully")
-        logger.info(f"Training precision: {train_accuracy:.2%}")
-        logger.info(f"Testing precision: {test_accuracy:.2%}")
+        print_metrics(metrics)
         
         return metrics
     
